@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Último Condenado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Header -->
+    <header class="bg-gray-800 py-4 fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#inicio" class="flex items-center space-x-2">
+                <img src="./img/logo.webp" alt="Abismo de Alberthirs" class="w-12">
+                <span class="text-xl font-semibold">El Último Condenado</span>
+            </a>
+            <nav class="flex space-x-6">
+                <a href="#historia" class="text-white hover:text-blue-400">Historia</a>
+                <a href="#explora" class="text-white hover:text-blue-400">Explora</a>
+                <a href="#trailer" class="text-white hover:text-blue-400">Trailer</a>
+                <a href="#audio" class="text-white hover:text-blue-400">Audio</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Inicio Section -->
+    <section id="inicio" class="relative h-screen flex items-center justify-center bg-fixed bg-cover bg-center" style="background-image: url('./img/abismo.webp');">
+        <div class="text-center">
+            <img src="./img/logo.webp" alt="Abismo de Alberthirs" class="w-64 mx-auto animate-pulse">
+            <h1 class="text-4xl font-bold mt-4">Enfrenta tu destino en el Abismo de Alberthirs</h1>
+            <button class="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-800 transition rounded-lg text-lg">Jugar Ahora</button>
+        </div>
+    </section>
+    
+
+    <!-- Historia Section -->
+    <section id="historia" class="py-20 px-6 text-center bg-gray-800">
+        <h2 class="text-3xl font-semibold">Historia</h2>
+        <p class="mt-4 max-w-3xl mx-auto">Has sido condenado a Alberthirs, el abismo de la condena. Enfrenta tus miedos, supera las pruebas y lucha por tu redención.</p>
+    </section>
+
+    <!-- Section con carrusel -->
+    <section id="explora" class="py-20 px-6 bg-gray-900 text-center">
+        <h2 class="text-3xl font-semibold">Explora el Abismo</h2>
+        <div class="relative w-full max-w-4xl mx-auto mt-6" x-data="{current: 0, images: ['./img/escenario.webp', './img/monstruo.webp', './img/personaje.webp', './img/abismo.webp']}" >
+           
+            <div class="relative overflow-hidden h-96">
+                <template x-for="(image, index) in images" :key="index">
+                    <img :src="image" x-show="current === index" class="w-full h-full object-contain transition-opacity duration-500" :class="{'absolute': current !== index}">
+                </template>
+            </div>
+            <div class="mt-4 flex justify-center space-x-2">
+                <button @click="current = (current - 1 + images.length) % images.length" class="px-4 py-2 bg-gray-700 hover:bg-gray-500 rounded">&#9665;</button>
+                <button @click="current = (current + 1) % images.length" class="px-4 py-2 bg-gray-700 hover:bg-gray-500 rounded">&#9655;</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Trailer con Video -->
+    <section id="trailer" class="py-20 px-6 bg-gray-800 text-center">
+        <h2 class="text-3xl font-semibold">Trailer</h2>
+        <video class="mt-6 w-full max-w-3xl mx-auto" controls>
+            <source src="./video/trailer.mp4" type="video/mp4">
+            <source src="./video/trailer.webm" type="video/webm">
+            Tu navegador no soporta videos.
+        </video>
+    </section>
+    <!-- Audio Ambiente -->
+    <section class="py-20 px-6 bg-gray-900 text-center flex items-center justify-center">
+        <div>
+            <h2 class="text-3xl font-semibold">Sumérgete en la Oscuridad</h2>
+            <audio controls class="mt-6">
+                <source src="./musica/suspense-tension-background-music-302978.mp3" type="audio/mp3">
+                <source src="./musica/suspense-tension-background-music-302978.ogg" type="audio/ogg">
+                Tu navegador no soporta audio.
+            </audio>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center bg-black">
+        <p class="text-gray-500">&copy; 2025 El Último Condenado. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
